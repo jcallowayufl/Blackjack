@@ -80,13 +80,7 @@ public class Blackjack {
 
             }
             System.out.println("Your hand is : " + playerHand); //menu for 1st choice
-            System.out.println("");
-            System.out.println("1. Get another card");
-            System.out.println("2. Hold hand");
-            System.out.println("3. Print statistics");
-            System.out.println("4. Exit");
-            System.out.println("");
-            System.out.print("Choose an option: ");
+            Menu();
 
             while (true) {    //allows for successive moves in 1 game
 
@@ -96,13 +90,7 @@ public class Blackjack {
                 } catch (InputMismatchException e) {
 
                     System.out.println("Invalid input!\nPlease enter an integer value between 1 and 4.");
-                    System.out.println("");
-                    System.out.println("1. Get another card");
-                    System.out.println("2. Hold hand");
-                    System.out.println("3. Print statistics");
-                    System.out.println("4. Exit");
-                    System.out.println("");
-                    System.out.println("Choose another option: ");
+                    Menu();
                     scanny.nextLine();
                     continue;
 
@@ -213,13 +201,7 @@ public class Blackjack {
                     }
                     if (playerHand < 21) {
                         System.out.println("Your hand is : " + playerHand); //menu after each hit
-                        System.out.println("");
-                        System.out.println("1. Get another card");
-                        System.out.println("2. Hold hand");
-                        System.out.println("3. Print statistics");
-                        System.out.println("4. Exit");
-                        System.out.println("");
-                        System.out.print("Choose another option: ");
+                        Menu();
                     }
                 } 
                 
@@ -274,28 +256,30 @@ public class Blackjack {
                     System.out.print("Percentage of Player wins: ");
                     System.out.printf("%.1f", (double) (percentPlayerWins));
                     System.out.println("%");
-                    System.out.println("");
-                    System.out.println("1. Get another card");
-                    System.out.println("2. Hold hand");
-                    System.out.println("3. Print statistics");
-                    System.out.println("4. Exit");
-                    System.out.println("");
-                    System.out.print("Choose another option: ");
+                    Menu();
                     continue;
-                } else if (choice == 4) {  //exits game
+                } 
+                
+                else if (choice == 4) {  //exits game
                     System.exit(1);
                     break;
-                } else  {     //if non-valid integer is entered
+                } 
+                
+                else  {     //if non-valid integer is entered
                     System.out.println("Invalid input!\nPlease enter an integer value between 1 and 4.");
-                    System.out.println("");
-                    System.out.println("1. Get another card");
-                    System.out.println("2. Hold hand");
-                    System.out.println("3. Print statistics");
-                    System.out.println("4. Exit");
-                    System.out.println("");
-                    System.out.print("Choose an option: ");
+                    Menu();
                 }
             }
         }
+    }
+    
+    public static void Menu() {	//method prints the menu
+    	System.out.println("");
+        System.out.println("1. Get another card");
+        System.out.println("2. Hold hand");
+        System.out.println("3. Print statistics");
+        System.out.println("4. Exit");
+        System.out.println("");
+        System.out.println("Choose another option: ");
     }
 }
