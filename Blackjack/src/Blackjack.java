@@ -7,6 +7,7 @@ public class Blackjack {
         Scanner scanny = new Scanner(System.in);    //user input for choosing from menu
         Scanner aceScan = new Scanner(System.in);	//user input for choosing which value an ace holds
         int choice = 0;                             //hit, stay, shows stats, or exit based on input
+        int aceChoose = 0;								//determine whether an ace counts as a 1 or 11
         double gameNumber = 1;                      //Number shown in "START GAME #X"
         double playerWins = 0;                      //Number of times the player wins
         int dealerWins = 0;                         //Number of times the dealer wins
@@ -19,31 +20,57 @@ public class Blackjack {
             Random randomNumber1 = new Random();
             System.out.println("START GAME #" + (int)gameNumber);
             System.out.println("");
-            //playerHand = randomNumber1.nextInt(13 - 1 + 1) + 1; //starting card #
-            playerHand = 1; //FIXME: used for testing aces
+            playerHand = randomNumber1.nextInt(13 - 1 + 1) + 1; //starting card #
+            playerHand = 1;
 
             switch (playerHand) {   //in case of each card number
 
                 case 1: {
                     System.out.println("Your card is an ACE!");
                     System.out.print("Enter 1 or 11 to choose which value your ace will hold: ");
-                    int aceChoose = aceScan.nextInt();
+                    aceChoose = aceScan.nextInt();
                     
-                    if (aceChoose == 1) {
-                    	playerHand = 1;
-                    	System.out.println("Okay, your ace is a 1!");
-                    }
-                    
-                    else if (aceChoose == 11) {
+                    if (aceChoose == 11) {
                     	playerHand = 11;
                     	System.out.println("Okay, your ace is an 11!");
+                    	System.out.println();
+                    	break;
+                    }
+                    
+                    else if (aceChoose == 1) {
+                    	playerHand = 1;
+                    	System.out.println("Okay, your ace is a 1!");
+                    	System.out.println();
+                    	break;
                     }
                     
                     else {
-                    	System.out.println("Invalid input!\nPlease enter either 1 or 11 as yur selection.");
+                    	
+                    	while (!(aceChoose == 1 || aceChoose == 11)) { 
+                    	
+                    	System.out.print("Invalid input!\nPlease enter either 1 or 11 as your selection: ");
                     	aceScan.nextLine();
-                        continue;
+                    	aceChoose = aceScan.nextInt();		//only causes an exit of the loop when you enter 1 or 11, doesn't re-assign values
+                    	
+                    	if (aceChoose == 11) {
+                    		playerHand = 11;
+                        	System.out.println("Okay, your ace is an 11!");
+                        	System.out.println();
+                        	break;
+                        }
+                        
+                        else if (aceChoose == 1) {
+                        	playerHand = 1;
+                        	System.out.println("Okay, your ace is a 1!");
+                        	System.out.println();
+                        	break;
+                        }
+                    	
+                        else {
+                        	continue;
+                    	}
                     }
+                 }
                     
                     break;
                 }
@@ -100,8 +127,8 @@ public class Blackjack {
                 }
 
             }
-            
-            System.out.println("Your hand is : " + playerHand); //menu for 1st choice
+
+            System.out.println("Your hand is : " + playerHand); 
             Menu();
 
             while (true) {    //allows for successive moves in 1 game
@@ -121,13 +148,33 @@ public class Blackjack {
 
                 if (choice == 1) {      //user chooses to hit
                     Random randomNumber2 = new Random();
-                    int hit = randomNumber2.nextInt(13 - 1 + 1) + 1; //new card
+                    //int hit = randomNumber2.nextInt(13 - 1 + 1) + 1; //new card
+                    int hit = 1;	//FIXME: used to practice aces
 
                     switch (hit) {      //in case of each number generated for next hit
 
                         case 1: {
-                            playerHand = hit + playerHand;
-                            System.out.println("\nYour card is an ACE!");
+                        	System.out.println("Your card is an ACE!");
+                            System.out.print("Enter 1 or 11 to choose which value your ace will hold: ");
+                            aceChoose = aceScan.nextInt();
+                            
+                            if (aceChoose == 1) {
+                            	playerHand += 1;
+                            	System.out.println("Okay, your ace is a 1!");
+                            	System.out.println();
+                            }
+                            
+                            else if (aceChoose == 11) {
+                            	playerHand += 11;
+                            	System.out.println("Okay, your ace is an 11!");
+                            	System.out.println();
+                            }
+                            
+                            else {
+                            	System.out.println("Invalid input!\nPlease enter either 1 or 11 as your selection.");
+                            	aceScan.nextLine();
+                                continue;
+                            }
                             break;
                         }
                         case 2: {
