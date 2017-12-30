@@ -4,7 +4,8 @@ public class Blackjack {
 
     public static void main(String args[]) {
 
-        Scanner scanny = new Scanner(System.in);    //user input
+        Scanner scanny = new Scanner(System.in);    //user input for choosing from menu
+        Scanner aceScan = new Scanner(System.in);	//user input for choosing which value an ace holds
         int choice = 0;                             //hit, stay, shows stats, or exit based on input
         double gameNumber = 1;                      //Number shown in "START GAME #X"
         double playerWins = 0;                      //Number of times the player wins
@@ -18,12 +19,32 @@ public class Blackjack {
             Random randomNumber1 = new Random();
             System.out.println("START GAME #" + (int)gameNumber);
             System.out.println("");
-            playerHand = randomNumber1.nextInt(13 - 1 + 1) + 1; //starting card #
+            //playerHand = randomNumber1.nextInt(13 - 1 + 1) + 1; //starting card #
+            playerHand = 1; //FIXME: used for testing aces
 
             switch (playerHand) {   //in case of each card number
 
                 case 1: {
                     System.out.println("Your card is an ACE!");
+                    System.out.print("Enter 1 or 11 to choose which value your ace will hold: ");
+                    int aceChoose = aceScan.nextInt();
+                    
+                    if (aceChoose == 1) {
+                    	playerHand = 1;
+                    	System.out.println("Okay, your ace is a 1!");
+                    }
+                    
+                    else if (aceChoose == 11) {
+                    	playerHand = 11;
+                    	System.out.println("Okay, your ace is an 11!");
+                    }
+                    
+                    else {
+                    	System.out.println("Invalid input!\nPlease enter either 1 or 11 as yur selection.");
+                    	aceScan.nextLine();
+                        continue;
+                    }
+                    
                     break;
                 }
                 case 2: {
@@ -90,6 +111,7 @@ public class Blackjack {
 
                 } catch (InputMismatchException e) {
 
+                	System.out.println("");
                     System.out.println("Invalid input!\nPlease enter an integer value between 1 and 4.");
                     Menu();
                     scanny.nextLine();
@@ -105,7 +127,7 @@ public class Blackjack {
 
                         case 1: {
                             playerHand = hit + playerHand;
-                            System.out.println("Your card is an ACE!");
+                            System.out.println("\nYour card is an ACE!");
                             break;
                         }
                         case 2: {
@@ -172,19 +194,13 @@ public class Blackjack {
                         }
                     }
                     if (playerHand > 21) {  //dealer wins because player busted
-                        System.out.println("Your hand is: " + playerHand);
-                        System.out.println("");
-                        System.out.println("You exceeded 21!  You lose :(");
-                        System.out.println("");
+                        System.out.println("Your hand is: " + playerHand + "\nYou exceeded 21!  You lose :(");
                         gameNumber = ++gameNumber;
                         dealerWins = ++dealerWins;
                         break;
                     }
                     if (playerHand == 21) { //player BLACKJACK
-                        System.out.println("Your hand is: " + playerHand);
-                        System.out.println("");
-                        System.out.println("BLACKJACK! You win!");
-                        System.out.println("");
+                        System.out.println("Your hand is: " + playerHand + "\nBLACKJACK! You win!");
                         gameNumber = ++gameNumber;
                         playerWins = ++playerWins;
                         break;
