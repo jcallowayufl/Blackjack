@@ -7,12 +7,14 @@ public class Blackjack {
         Scanner scanny = new Scanner(System.in);    //user input for choosing from menu
         Scanner aceScan = new Scanner(System.in);	//user input for choosing which value an ace holds
         int choice = 0;                             //hit, stay, shows stats, or exit based on input
-        int aceChoose = 0;								//determine whether an ace counts as a 1 or 11
+        int aceChoose = 0;							//determine whether an ace counts as a 1 or 11
         double gameNumber = 1;                      //Number shown in "START GAME #X"
         double playerWins = 0;                      //Number of times the player wins
         int dealerWins = 0;                         //Number of times the dealer wins
         int tieGames = 0;                           //Number of tied games
         int playerHand = 0;                         //Sum of cards in player's current hand
+        boolean success1 = false;					//allows for repeated try-catch when determining the value of an ace for the first round
+        boolean success2 = false;					//allows for repeated try-catch when determining the value of an ace for the second round and after
 
 
         while (true) {  //allows for successive games
@@ -28,8 +30,21 @@ public class Blackjack {
                 case 1: {
                     System.out.println("Your card is an ACE!");
                     System.out.print("Enter 1 or 11 to choose which value your ace will hold: ");
-                    aceChoose = aceScan.nextInt();
                     
+                    while (!success1) {
+                    try {
+                        aceChoose = aceScan.nextInt();
+                        success1 = true;
+
+                    } catch (InputMismatchException e) {
+
+                    	System.out.println("Invalid input!");
+                    	System.out.print("Please enter either 1 or 11 as your selection: ");
+                    	aceScan.nextLine();
+                    	continue;
+
+                    }
+                 
                     if (aceChoose == 11) {
                     	playerHand = 11;
                     	System.out.println("Okay, your ace is an 11!");
@@ -45,35 +60,17 @@ public class Blackjack {
                     }
                     
                     else {
-                    	
-                    	while (!(aceChoose == 1 || aceChoose == 11)) { 
-                    	
-                    	System.out.print("Invalid input!\nPlease enter either 1 or 11 as your selection: ");
+                    	System.out.println("Invalid input!");
+                    	System.out.print("Please enter either 1 or 11 as your selection: ");
                     	aceScan.nextLine();
-                    	aceChoose = aceScan.nextInt();		//only causes an exit of the loop when you enter 1 or 11, doesn't re-assign values
-                    	
-                    	if (aceChoose == 11) {
-                    		playerHand = 11;
-                        	System.out.println("Okay, your ace is an 11!");
-                        	System.out.println();
-                        	break;
-                        }
-                        
-                        else if (aceChoose == 1) {
-                        	playerHand = 1;
-                        	System.out.println("Okay, your ace is a 1!");
-                        	System.out.println();
-                        	break;
-                        }
-                    	
-                        else {
-                        	continue;
-                    	}
+                    	success1 = false;
+                    	continue;
                     }
-                 }
+               }
                     
                     break;
-                }
+           }
+                    
                 case 2: {
                     System.out.println("Your card is a 2!");
                     break;
