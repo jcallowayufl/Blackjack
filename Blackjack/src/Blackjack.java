@@ -79,6 +79,7 @@ public class Blackjack {
                 }
 
             }
+            
             System.out.println("Your hand is : " + playerHand); //menu for 1st choice
             Menu();
 
@@ -104,80 +105,69 @@ public class Blackjack {
 
                         case 1: {
                             playerHand = hit + playerHand;
-                            System.out.println("");
                             System.out.println("Your card is an ACE!");
                             break;
                         }
                         case 2: {
                             playerHand = hit + playerHand;
                             System.out.println("");
-                            System.out.println("Your card is a 2!");
+                            System.out.println("\nYour card is a 2!");
                             break;
                         }
                         case 3: {
                             playerHand = hit + playerHand;
-                            System.out.println("");
-                            System.out.println("Your card is a 3!");
+                            System.out.println("\nYour card is a 3!");
                             break;
                         }
                         case 4: {
                             playerHand = hit + playerHand;
-                            System.out.println("");
-                            System.out.println("Your card is a 4!");
+                            System.out.println("\nYour card is a 4!");
                             break;
                         }
                         case 5: {
                             playerHand = hit + playerHand;
-                            System.out.println("");
-                            System.out.println("Your card is a 5!");
+                            System.out.println("\nYour card is a 5!");
                             break;
                         }
                         case 6: {
                             playerHand = hit + playerHand;
-                            System.out.println("");
-                            System.out.println("Your card is a 6!");
+                            System.out.println("\nYour card is a 6!");
                             break;
                         }
                         case 7: {
                             playerHand = hit + playerHand;
                             System.out.println("");
-                            System.out.println("Your card is a 7!");
+                            System.out.println("\nYour card is a 7!");
                             break;
                         }
                         case 8: {
                             playerHand = hit + playerHand;
-                            System.out.println("");
-                            System.out.println("Your card is a 8!");
+                            System.out.println("\nYour card is a 8!");
                             break;
                         }
                         case 9: {
                             playerHand = hit + playerHand;
-                            System.out.println("");
-                            System.out.println("Your card is a 9!");
+                            System.out.println("\nYour card is a 9!");
                             break;
                         }
                         case 10: {
                             playerHand = hit + playerHand;
-                            System.out.println("");
-                            System.out.println("Your card is a 10!");
+                            System.out.println("\nYour card is a 10!");
                             break;
                         }
                         case 11: {
                             playerHand = 10 + playerHand;
-                            System.out.println("");
-                            System.out.println("Your card is a JACK!");
+                            System.out.println("\nYour card is a JACK!");
                             break;
                         }
                         case 12: {
                             playerHand = 10 + playerHand;
-                            System.out.println("");
-                            System.out.println("Your card is a QUEEN!");
+                            System.out.println("\nYour card is a QUEEN!");
                             break;
                         }
                         case 13: {
                             playerHand = 10 + playerHand;
-                            System.out.println("");
-                            System.out.println("Your card is a KING!");
+                            System.out.println("\nYour card is a KING!");
                             break;
                         }
                     }
@@ -280,6 +270,6 @@ public class Blackjack {
         System.out.println("3. Print statistics");
         System.out.println("4. Exit");
         System.out.println("");
-        System.out.println("Choose another option: ");
+        System.out.print("Choose another option: ");
     }
 }
